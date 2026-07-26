@@ -3,8 +3,7 @@
 # Interactive Decision-Support Tool for PROM Integration in AF Care
 # Aligned with ESC 2024 AF-CARE Framework
 #
-# Sokolova E, Sen SE, Goetz O, Grinberga K, Kupics K,
-# Maca-Kaleja A, Rudzitis A, Behmane D, Kalejs O
+# Sokolova E, Sen SE, Goetz O, Maca-Kaleja A, Behmane D, Kalejs O
 ####################################################################
 
 library(shiny)
@@ -24,16 +23,16 @@ instruments <- c("AFEQT", "EQ-5D", "SF-36", "MLHFQ", "AFSS")
 # Coverage: Full=2, Partial=1, None=0
 # Rows = domains, Cols = instruments
 cov_mat <- matrix(c(
-  2, 2, 2, 2, 1,
-  2, 1, 1, 1, 2,
-  2, 2, 2, 2, 1,
-  2, 1, 2, 1, 1,
-  1, 0, 1, 1, 0,
-  2, 0, 0, 1, 0,
-  1, 0, 0, 0, 0,
-  2, 2, 2, 2, 1,
-  0, 0, 0, 0, 0,
-  1, 0, 1, 1, 0
+  2, 2, 2, 2, 1,   # Physical functioning
+  2, 1, 1, 2, 2,   # Symptoms
+  2, 1, 2, 2, 1,   # Emotional well-being
+  2, 1, 2, 2, 0,   # Social functioning
+  0, 0, 0, 1, 0,   # Cognitive function
+  2, 0, 0, 1, 0,   # Treatment satisfaction
+  0, 0, 0, 1, 0,   # Economic burden
+  1, 2, 2, 0, 1,   # Health perception
+  0, 0, 0, 1, 0,   # Sexual health
+  0, 0, 0, 1, 0    # Sleep quality
 ), nrow = 10, byrow = TRUE, dimnames = list(domains, instruments))
 
 cov_labels <- ifelse(cov_mat == 2, "Full", ifelse(cov_mat == 1, "Partial", "None"))
@@ -82,16 +81,16 @@ afcare <- data.frame(
 
 # Gap analysis
 gaps <- data.frame(
-  Domain = c("Cognitive function", "Sleep quality", "Sexual health",
-             "Economic burden", "Social functioning"),
-  Status = c("Partially captured", "Limited", "Not captured", "Limited", "Partially captured"),
-  Avg_Pct = c(20, 20, 0, 10, 47),
+  Domain = c("Cognitive function", "Economic burden", "Sexual health",
+             "Sleep quality", "Treatment satisfaction"),
+  Status = c("Limited", "Limited", "Limited", "Limited", "Partially captured"),
+  Avg_Pct = c(10, 10, 10, 10, 30),
   Consequence = c(
     "Underrecognition of cognitive decline and neurovascular risk",
-    "Missed identification of AF triggers (e.g., sleep apnea)",
-    "Incomplete assessment of quality of life and treatment impact",
     "Underestimation of healthcare utilisation and patient burden",
-    "Reduced understanding of patient participation and daily limitations"),
+    "Incomplete assessment of quality of life and treatment impact",
+    "Missed identification of AF triggers (e.g., sleep apnea)",
+    "Limited insight into perceived therapy acceptability"),
   stringsAsFactors = FALSE
 )
 
@@ -241,7 +240,7 @@ ui <- dashboardPage(
     ),
     hr(),
     div(style = "padding: 8px 15px; font-size: 11px; color: #78909C; line-height: 1.4;",
-        HTML("Sokolova E, Sen SE, Goetz O,<br>Grinberga K, Kupics K, Maca-Kaleja A,<br>Rudzitis A, Behmane D, Kalejs O"))
+        HTML("Developed by<br>Sokolova E, Sen SE"))
   ),
   
   dashboardBody(
@@ -269,7 +268,7 @@ ui <- dashboardPage(
                 box(title = "About", width = 6, status = "primary",
                     div(class = "mod-info", HTML(
                       "<b>Purpose:</b> This dashboard operationalises the PROM integration framework
-              from the companion Diagnostics paper. It enables interactive exploration of
+              from the companion narrative review (Sokolova et al., <i>Healthcare</i>, 2026). It enables interactive exploration of
               domain coverage, gap analysis, AF-CARE pathway mapping, multilevel implementation
               planning, cross-country burden comparison, and AFEQT score simulation.<br><br>
               <b>Users:</b> Clinicians selecting instruments for AF care, health economists
@@ -282,7 +281,7 @@ ui <- dashboardPage(
                       "<b>C</b> &ndash; <span style='color:#7B1FA2;font-weight:600;'>Comorbidity and risk factors</span>:
               Cognitive function, Sleep quality<br>
               <b>A</b> &ndash; <span style='color:#C62828;font-weight:600;'>Avoid stroke</span>:
-              Health perception, Functional status<br>
+              Health perception<br>
               <b>R</b> &ndash; <span style='color:#1565C0;font-weight:600;'>Rate and rhythm control</span>:
               Symptom burden<br>
               <b>E</b> &ndash; <span style='color:#2E7D32;font-weight:600;'>Evaluation and follow-up</span>:
