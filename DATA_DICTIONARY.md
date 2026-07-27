@@ -10,7 +10,7 @@ A 10 × 5 matrix scoring how fully each instrument captures each QoL domain.
 - **Columns (5):** AFEQT, EQ-5D, SF-36, MLHFQ, AFSS
 - **Values:** 2 = Full, 1 = Partial, 0 = None
 
-**Source:** Instrument content analysis performed for the companion narrative review (65 studies, 1992–2024). Scoring performed by the lead author and validated by [N] co-authors via inter-rater agreement (see manuscript §2.5).
+**Source:** Instrument content analysis performed for the companion narrative review (65 studies, 1992–2024). Scoring performed by the lead author and validated by a second co-author via inter-rater agreement (quadratic weighted κ = 0.73) (see manuscript §2.5).
 
 ## 2. Domain relevance (`domain_info`)
 
@@ -36,12 +36,12 @@ Maps 8 PROM domains onto the four AF-CARE components.
 
 ## 4. Gap analysis (`gaps`)
 
-Five underrepresented domains with coverage and diagnostic consequences.
+The least-covered domains — cognitive function, economic burden, sexual health, and sleep quality (10% each), plus treatment satisfaction (30%) — with coverage scores and their measurement and implementation implications.
 
 - **Domain** — underrepresented domain
 - **Status** — coverage status (Partially captured / Limited / Not captured)
 - **Avg_Pct** — average coverage across instruments (%)
-- **Consequence** — diagnostic consequence of the gap
+- **Consequence** — measurement and implementation implication of the gap
 
 **Source:** Derived from the domain coverage matrix (dataset 1) and the companion review.
 
