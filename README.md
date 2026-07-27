@@ -6,9 +6,9 @@ Live demo: https://sevinc.shinyapps.io/af-prom-dashboard/
 
 This dashboard accompanies:
 
-Sokolova E, Sen SE, Goetz O, Mača-Kalēja A, Behmane D, Kalējs O. From Framework to Tool: Development and Expert Evaluation of an Interactive Dashboard for PROM-Based Atrial Fibrillation Care Planning. Under review, 2026.
+Sokolova E, Sen SE, Goetz O, Mača-Kalēja A, Behmane D, Kalējs O. From Framework to Tool: Development and Preliminary Expert Evaluation of an Interactive Dashboard for PROM Integration in Atrial Fibrillation Care. Under review, 2026.
 
-and operationalises the framework from the companion narrative review (Diagnostics, 2026;16:1398).
+and operationalises the framework from the companion narrative review (Sokolova et al., *Healthcare*, 2026).
 
 ## What it does
 
@@ -28,7 +28,7 @@ Six interactive modules:
 Requires R (>= 4.3).
 
 ```r
-install.packages(c("shiny", "shinydashboard", "plotly", "DT", "RColorBrewer", "irr"))
+install.packages(c("shiny", "shinydashboard", "plotly", "DT", "RColorBrewer"))
 shiny::runApp("app.R")
 ```
 
@@ -41,7 +41,6 @@ All data are embedded in `app.R`, so no external files are required to run the d
 | File | Purpose |
 | --- | --- |
 | `app.R` | The complete Shiny application (UI, server, embedded data) |
-| `analysis/afprom_analysis.R` | Analysis script for the expert-evaluation responses (SUS, task completion, acceptability, NPS, pre/post confidence) |
 | `DATA_DICTIONARY.md` | Description and sources of every embedded dataset |
 | `LICENSE` | MIT licence |
 | `README.md` | This file |
